@@ -1,0 +1,136 @@
+.container{
+    display:flex;
+}
+.linke-seite{
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    }
+            #meineTermine{
+                position:absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20%;
+                height: 40px;
+                left: 15%;
+                top:30%;
+                border:1px solid #ccc;
+            }
+            .termin{
+                position: absolute;
+                width:35%;
+                top:  40%;
+                left: 7%;
+                border: 1px solid #ccc;
+            }
+            .termin td{
+                 width: 100%;
+                 height: 50px;
+                 text-align: center;
+            }
+            .hidden {
+                 display: none;
+            }
+            .arrow{
+                cursor:pointer;
+                display:flex;
+                justify-content: flex-end;
+            }
+            .showtable{
+                width: 100%;
+                height: 50px;
+                text-align: center;
+            }
+            .showtable td:first-child{
+                width:50%;
+            }
+            .buttonslinkeseite{
+                    .material-symbols-outlined{
+                        position: absolute;
+                        display : flex;
+                        transform: translateX(-50%);
+                        align-items: center;
+                        justify-content: center;
+                        cursor:pointer;
+                    }
+            }
+.rechte-seite{
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    }
+            #verfügbarekurse{
+                position:absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20%;
+                height: 40px;
+                right: 15%;
+                top:30%;
+                border:1px solid #ccc;
+               }
+
+            .kurs {
+                position: absolute;
+                width:35%;
+                top:  45%;
+                right: 7%;
+                border: 1px solid #ccc;
+
+            }
+            .kurs td {
+                 width: 100%;
+                 height: 50px;
+
+                 text-align: center;
+            }
+            .hidden {
+                 display: none;
+            }
+            .done {
+                cursor:pointer;
+                display:flex;
+                justify-content: flex-end;
+            }
+            .showdetails {
+                width: 107%;
+                height: 50px;
+                text-align: center;
+            }
+            .showdetails td:first-child {
+                width:25%;
+            }
+            .showdetails td:last-child {
+                width:15%;
+            }
+            .buttonsrechteseite{
+                    .material-symbols-outlined{
+                        position: absolute;
+                        display : flex;
+                        transform: translateX(50%);
+                        align-items: center;
+                        justify-content: center;
+                        cursor:pointer;
+                    }
+            }
+
+            #suchleiste{
+                position:absolute;
+                width: 35%;
+                height: 26px;
+                top:37%;
+                right: 7%;
+                border:1px solid #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: Arial, sans-serif;
+                font-size: 16px;
+                cursor:pointer;
+            }
+
+
