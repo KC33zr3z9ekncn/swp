@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% assets "user_css" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+    {% endassets %}
+
+    {% assets "script_js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+</head>
+<body>
+    <h1>Terminbelegung</h1>
+<div class="container">
+    <div class="linke-seite">
+        <div id="meineTermine">Meine Termine</div>
+        <table class="termin">
+            <tr>
+                <td>Terminübersicht</td>
+                <td>
+                    <span class="material-symbols-outlined arrow" onclick="toggleRectangle()">arrow_drop_down</span>
+                </td>
+            </tr>
+            <tr>
+                <td id="infoBox" class="hidden">
+            <table class="showtable">
+                {% for kurs in kurse %}
+                <tr>
+                    <td>{{kurs.class_ref.date}}</td>
+                    <td>{{kurs.class_ref.module}}</td>
+                    <td>
+                        <form action="{{ url_for('user-view.handle_print') }}" method="POST">
+                            <button class="material-symbols-outlined print">print</button>
+                        </form>
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td>{{kurs.class_ref.instructor.displayName}}</td>
+                    <td>{{current_user.displayName}}</td>
+                </tr>
+                <tr>
+                    <td>Ort:</td>
+                    <td>...</td>
+
+                </tr>-->
+                {% endfor%}
+            </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="rechte-seite">
+        <div class="buttonsrechteseite">
+
+        </div>
+        <div id="verfügbarekurse">Verfuegbare Kurse</div>
+        <div>
+            <input type="text" id="suchleiste" placeholder="Suche...">
+        </div>
+
+        <table class="kurs">
+            <tr>
+                <td>Kursname</td>
+                <td>
+                    <span class="material-symbols-outlined arrow" onclick="toggleRectangle2()">arrow_drop_down</span>
+                </td>
+            </tr>
+            <tr>
+                <td id="infoBoxrechts" class="hidden">
+            <table class="showdetails">
+                {% for kurs in kurse %}
+                <tr>
+                    <td>{{kurs.class_ref.date}} </td>
+                    <td>{{kurs.class_ref.instructor.displayName}}</td>
+                    <td>17/31</td>
+
+                    <td>
+                        <form action="{{ url_for('user-view.handle_done') }}" method="POST">
+                            <button class="material-symbols-outlined done">done</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{kurs.class_ref.date}}</td>
+                    <td>{{kurs.class_ref.instructor.displayName}}</td>
+                    <td>11/31</td>
+                    <td>
+                        <form action="{{ url_for('user-view.handle_done') }}" method="POST">
+                            <button class="material-symbols-outlined done">done</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{kurs.class_ref.date}}</td>
+                    <td>{{kurs.class_ref.instructor.displayName}}</td>
+                    <td>3/31</td>
+                    <td>
+                        <form action="{{ url_for('user-view.handle_done') }}" method="POST">
+                            <button class="material-symbols-outlined done">done</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+                </td>
+            </tr>
+            {% endfor%}
+        </table>
+</body>
+{% endblock %}
