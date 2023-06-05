@@ -34,39 +34,28 @@
             <table class="showtable">
                 {% for kurs in kurse %}
                 <tr>
-                    <td>{{kurs.class_ref.date}}</td>
-                    <td>{{kurs.class_ref.module}}</td>
+                    <td>{{kurs.class_ref.date.strftime('%Y-%m-%d') }}</td>
+                    <td>{{kurs.class_ref.module.description}}</td>
                     <td>
-                        <form action="{{ url_for('user-view.handle_print') }}" method="POST">
-                            <button class="material-symbols-outlined print">print</button>
-                        </form>
+                      <div class="button-group">
+                            <form action="{{ url_for('user-view.handle_print') }}" method="POST">
+                                 <button class="material-symbols-outlined print">print</button>
+                            </form>
+                            <form action="{{ url_for('user-view.handle_close') }}" method="POST">
+                                <button class="material-symbols-outlined close">close</button>
+                            </form>
+                      </div>
+                </tr>
                     </td>
-                </tr>
-                <!--<tr>
-                    <td>{{kurs.class_ref.instructor.displayName}}</td>
-                    <td>{{current_user.displayName}}</td>
-                </tr>
-                <tr>
-                    <td>Ort:</td>
-                    <td>...</td>
-
-                </tr>-->
-                {% endfor%}
+            </tr>
+                {% endfor %}
             </table>
                 </td>
             </tr>
         </table>
     </div>
-
     <div class="rechte-seite">
-        <div class="buttonsrechteseite">
-
-        </div>
         <div id="verfügbarekurse">Verfuegbare Kurse</div>
-        <div>
-            <input type="text" id="suchleiste" placeholder="Suche...">
-        </div>
-
         <table class="kurs">
             <tr>
                 <td>Kursname</td>
@@ -77,42 +66,23 @@
             <tr>
                 <td id="infoBoxrechts" class="hidden">
             <table class="showdetails">
-                {% for kurs in kurse %}
+                {% for kurs in available_courses %}
                 <tr>
-                    <td>{{kurs.class_ref.date}} </td>
-                    <td>{{kurs.class_ref.instructor.displayName}}</td>
-                    <td>17/31</td>
-
+                    <td>{{ kurs.date.strftime('%Y-%m-%d') }}</td>
+                    <td>{{kurs.instructor.displayName}}</td>
+                    <td>{{kurs.participants}}/{{kurs.max_participants}}</td>
                     <td>
+                        <div class="button-group">
                         <form action="{{ url_for('user-view.handle_done') }}" method="POST">
                             <button class="material-symbols-outlined done">done</button>
                         </form>
+                        </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>{{kurs.class_ref.date}}</td>
-                    <td>{{kurs.class_ref.instructor.displayName}}</td>
-                    <td>11/31</td>
-                    <td>
-                        <form action="{{ url_for('user-view.handle_done') }}" method="POST">
-                            <button class="material-symbols-outlined done">done</button>
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{{kurs.class_ref.date}}</td>
-                    <td>{{kurs.class_ref.instructor.displayName}}</td>
-                    <td>3/31</td>
-                    <td>
-                        <form action="{{ url_for('user-view.handle_done') }}" method="POST">
-                            <button class="material-symbols-outlined done">done</button>
-                        </form>
-                    </td>
-                </tr>
+               {% endfor%}
             </table>
                 </td>
             </tr>
-            {% endfor%}
         </table>
 </body>
 {% endblock %}
