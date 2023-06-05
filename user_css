@@ -38,6 +38,23 @@
                 display:flex;
                 justify-content: flex-end;
             }
+            .button-group {
+            display: flex;
+            }
+            .button-group form {
+            margin-right: 10px;
+            }
+            .button-group form button {
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            padding: 10px 15px;
+            border-radius: 4px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            }
+            .button-group form button:hover {
+            background-color: #e0e0e0;
+            }
             .showtable{
                 width: 100%;
                 height: 50px;
@@ -45,16 +62,6 @@
             }
             .showtable td:first-child{
                 width:50%;
-            }
-            .buttonslinkeseite{
-                    .material-symbols-outlined{
-                        position: absolute;
-                        display : flex;
-                        transform: translateX(-50%);
-                        align-items: center;
-                        justify-content: center;
-                        cursor:pointer;
-                    }
             }
 .rechte-seite{
     flex:1;
@@ -73,19 +80,16 @@
                 top:30%;
                 border:1px solid #ccc;
                }
-
             .kurs {
                 position: absolute;
                 width:35%;
-                top:  45%;
+                top:  40%;
                 right: 7%;
                 border: 1px solid #ccc;
-
             }
             .kurs td {
                  width: 100%;
                  height: 50px;
-
                  text-align: center;
             }
             .hidden {
@@ -95,6 +99,19 @@
                 cursor:pointer;
                 display:flex;
                 justify-content: flex-end;
+                background-color: #f1f1f1;
+            }
+            .close {
+                cursor:pointer;
+                display:flex;
+                justify-content: flex-end;
+                background-color: #f1f1f1;
+            }
+            .print {
+                cursor:pointer;
+                display:flex;
+                justify-content: flex-end;
+                background-color: #f1f1f1;
             }
             .showdetails {
                 width: 107%;
@@ -107,17 +124,6 @@
             .showdetails td:last-child {
                 width:15%;
             }
-            .buttonsrechteseite{
-                    .material-symbols-outlined{
-                        position: absolute;
-                        display : flex;
-                        transform: translateX(50%);
-                        align-items: center;
-                        justify-content: center;
-                        cursor:pointer;
-                    }
-            }
-
             #suchleiste{
                 position:absolute;
                 width: 35%;
