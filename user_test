@@ -1,0 +1,60 @@
+
+import pytest
+from app.factory import create_app
+from app.models import User, Role, Module, Date
+from werkzeug.security import generate_password_hash
+
+
+class TestURLs:
+    def test_kurse_not_logged_in(self, test_app):
+        rv = test_app.get('/user-view/')
+        assert 302 == rv.status_code
+
+    def test_kurse_logged_in(self, test_app, test_entry):
+        rv = test_app.post('/login', data=dict(
+            username='benutzer',
+            password="test"
+        ), follow_redirects=True)
+        rv = test_app.get('/user-view/')
+        assert 200 == rv.status_code
+    def test_get_created_user(self, test_entry):
+        result = User.objects.get(username=test_entry['username'])
+        assert result is not None
+        assert result.username == test_entry['username']
+        assert result.email == test_entry['email']
+        assert check_password_hash(result.password, test_entry['password'])
+        assert result.displayName == test_entry['displayName']
+        assert result.active == test_entry['active']
+    def test_add_user(self, test_app, test_entry):
+        rv = test_app.post('/user-view/', data=dict(
+            username=test_entry['username'],
+            email=test_entry['email'],
+            password=test_entry['password'],
+            displayName=test_entry['displayName'],
+            role='User'
+        ), follow_redirects=True)
+        assert 405 == rv.status_code
+
+    def test_erstellen_kursobjekt(self, test_app, test_entry):
+        module = Module(title="Testtest", description="I bims eins Test")
+        module.save()
+        date = Date(max_participants=20, date=datetime.datetime.now(), module=module, instructor=dozent)
+        date.save()
+
+        rv = test_app.post('/login', data=dict(
+            username='benutzer',
+            password="test"
+        ), follow_redirects=True)
+
+        rv = test_app.post('/register', data=dict(
+            username=test_entry['username'],
+            email=test_entry['email'],
+            password=test_entry['password'],
+            displayName=test_entry['displayName']
+        ), follow_redirects=True)
+        assert 200 == rv.status_code
+
+        attendance = Attendance(class_ref=date, user=user)
+        attendance.save()
+
+        assert Attendance.objects(class_ref=date, user=user).count() == 1
