@@ -1,0 +1,21 @@
+
+from app.models import User
+from werkzeug.security import check_password_hash
+
+
+class TestURLs:
+
+    #erstmal testen ob die Page ladet, auch wenn der Benutzer nicht eingeloogt ist
+    def test_user_not_log_in(self, test_app):
+        rv=test_app.get('/user-view/')
+        assert 302 == rv.status_code
+
+    #abchecken ob die Seite funktioniert wenn der Benutzer eingeloggt ist
+    def test_user_log_in(self, test_app):
+        rv = test_app.post('login', data=dict(
+            username='benutzer',
+            password='test'
+        ), follow_redirects=True)
+        rv = test_app.get('/user-view/')
+        assert 200 == rv.status_code
+
